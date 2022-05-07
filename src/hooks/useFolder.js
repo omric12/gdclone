@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 export const ROOT_FOLDER = { name: 'Root', id: null, path: [] };
 
+//Reducers actions dictionary
 const ACTIONS = {
   SELECT_FOLDER: 'select-folder',
   UPDATE_FOLDER: 'update-folder',
@@ -28,6 +29,12 @@ function reducer(state, { type, payload }) {
         folder: payload.folder,
       };
 
+    case ACTIONS.SET_CHILD_FOLDERS:
+      return {
+        ...state,
+        childFolders: payload.childFolders,
+      };
+
     default:
       return state;
   }
@@ -41,18 +48,49 @@ export function useFolder(folderId = null, folder = null) {
     childFiles: [],
   });
 
+  const { currentUser } = useAuth();
   useEffect(() => {
     dispatch({ type: ACTIONS.SELECT_FOLDER, payload: { folderId, folder } });
   }, [folderId, folder]);
 
   useEffect(() => {
-    if ((folderId = null)) {
+    if (folderId == null) {
       return dispatch({
         type: ACTIONS.SELECT_FOLDER,
         payload: { folder: ROOT_FOLDER },
       });
     }
+    database.folders
+      .doc(folderId)
+      .get()
+      .then((doc) => {
+        dispatch({
+          type: ACTIONS.UPDATE_FOLDER,
+          payload: { folder: database.formatDoc(doc) },
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: ACTIONS.UPDATE_FOLDER,
+          payload: { folder: ROOT_FOLDER },
+        });
+      });
   }, [folderId]);
+
+  useEffect(() => {
+    const cleanup = database.folders
+      .where('parentId', '==', folderId)
+      .where('userId', '==', currentUser.uid)
+      .orderBy('createdAt')
+      .onSnapshot((snapshot) => {
+        dispatch({
+          type: ACTIONS.SET_CHILD_FOLDERS,
+          payload: { childFolders: snapshot.docs.map(database.formatDoc) },
+        });
+      });
+    //cleanup old listeners
+    return () => cleanup();
+  }, [folderId, currentUser]);
 
   return state;
 }
