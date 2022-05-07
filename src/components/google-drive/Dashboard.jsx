@@ -1,4 +1,5 @@
 import AddFolder from './AddFolder';
+import BreadCrumbs from './BreadCrumbs';
 import { Container } from 'react-bootstrap';
 import Folder from '../google-drive/Folder';
 import NavbarComp from './Navbar';
@@ -14,7 +15,10 @@ function Dashboard() {
     <>
       <NavbarComp />
       <Container fluid>
-        <AddFolder currentFolder={folder} />
+        <div className='d-flex align-items-center'>
+          <BreadCrumbs currentFolder={folder} />
+          <AddFolder currentFolder={folder} />
+        </div>
         {childFolders.length > 0 && (
           <div className='d-flex flex-wrap'>
             {childFolders.map((childFolder) => (

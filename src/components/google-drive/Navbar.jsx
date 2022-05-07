@@ -5,7 +5,7 @@ import React from 'react';
 
 function NavbarComp() {
   return (
-    <Navbar bg='light' expand='sm'>
+    <Navbar bg='light' expand='sm' className='flex-grow-1 mb-3'>
       <Navbar.Brand as={Link} to='/'>
         GDClone
       </Navbar.Brand>

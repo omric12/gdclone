@@ -2,6 +2,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
 
 import { FaFolderPlus } from 'react-icons/fa';
+import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { database } from '../../firebase';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -23,12 +24,16 @@ export default function AddFolder({ currentFolder }) {
     e.preventDefault();
 
     if (currentFolder == null) return;
+    const path = [...currentFolder.path];
+    if (currentFolder !== ROOT_FOLDER) {
+      path.push({ name: currentFolder.name, id: currentFolder.id });
+    }
     // Create new database folder
     database.folders.add({
       name: name,
       parentId: currentFolder.id,
       userId: currentUser.uid,
-      // path,
+      path: path,
       createdAt: database.getCurrentTimestamp(),
     });
     setName('');
