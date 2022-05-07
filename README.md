@@ -1,10 +1,8 @@
-#דרישות לפרויקט של הקורס טכנולוגיות אינטרנט מתקדמות 61315
+# Advanced web technology - Ort Braude Course (61315)
 
-כללי: מטרת הקורס להקנות לסטודנט את הכלים והידע הנחוצים לצורך בניית אתרי אינטרנט מתקדמים. מטרת הפרויקט – להציג את ההבנה והיכולת הנדרשים לפיתוח מערכות מידע באינטרנט בשיטות ובעזרת הטכנולוגיות החדשות. דגש בפרויקט – ממשק אינטראקטיבי ואשיר המבוסס על client-side scripts.
-נושא: סטודנטים יכולים לבחור אחד מהנושאים המומלצים או להציע נושא אחר. בכל מקרה יש לקבל אישור של המרצה לאחר בחירת הנושא.  
-הגשה: לאחר בחירת הנושא יש להכין מסמך דרישות המתאר דרישות הפונקציונליות של הפרויקט. חובה להגיש את המסמך ביחד עם כל הקבצים של הפרויקט. יש להגיש את קבצי הפרויקט (בקובץ ZIP) במודל.
-טכנולוגיות: להלן המרכיבים טכנולוגיים המומלצים לשימוש בפרויקט:
-• מאגר נתונים – MS Sql Server או MongoDB
-• Server side – Asp.Net C# or NodeJS, ExpressJS, EJS
-• Client side – AngularJS or jQuery or ReactJS or native, Bootstrap
-• התאמה למכשירים סלולריים (Responsive or adaptive design)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Google Drive Close
+
+This project is a cloud storage clone based on google drive
+React - Bootstrap - Firebase auth - Firebase Firestore - Firebase host
