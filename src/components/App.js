@@ -20,10 +20,10 @@ function App() {
           <PrivateRoute exact path='/folder/:folderId' component={Dashboard} />
 
           {/* Profile */}
-          <PrivateRoute exact path='/' component={Profile} />
+          <PrivateRoute path='/user' component={Profile} />
           <PrivateRoute path='/update-profile' component={UpdateProfile} />
 
-          {/* Authentication */}
+          {/* Auth */}
           <Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} />
           <Route path='/forgot-password' component={ForgotPassword} />

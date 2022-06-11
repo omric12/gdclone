@@ -15,9 +15,6 @@ const app = firebase.initializeApp({
   measurementId: 'G-EY9G1RTNNH',
 });
 
-export const auth = app.auth();
-
-// Database management
 const firestore = app.firestore();
 export const database = {
   folders: firestore.collection('folders'),
@@ -27,5 +24,6 @@ export const database = {
   },
   getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp,
 };
-
+export const storage = app.storage();
+export const auth = app.auth();
 export default app;
